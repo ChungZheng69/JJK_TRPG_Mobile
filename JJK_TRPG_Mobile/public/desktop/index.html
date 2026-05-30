@@ -1,0 +1,156 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JJK TRPG AI GM Console</title>
+  <link rel="stylesheet" href="./desktop.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hud-status-bar">
+      <div class="status-identity">
+        <p class="kicker">ACTIVE PLAYER</p>
+        <h1 class="character-name">é¸£ç¥žèŽ²</h1>
+      </div>
+
+      <dl class="top-stat-grid" aria-label="Player status">
+        <div><dt>HP</dt><dd id="topStateHp">Unknown</dd></div>
+        <div><dt>MP</dt><dd id="topStateMp">Unknown</dd></div>
+        <div class="objective-stat"><dt>Current Objective</dt><dd id="topStateObjective">Unknown</dd></div>
+      </dl>
+
+      <div class="header-actions">
+        <button id="debugModeToggle" class="debug-toggle" type="button" aria-pressed="false">DEBUG OFF</button>
+        <div id="conversationBadge" class="connection-badge">NEW SESSION</div>
+        <button id="resetConversation" class="icon-button" type="button" title="æ¸…é™¤æœ¬åœ° conversation_id">RESET</button>
+      </div>
+    </header>
+
+    <div class="hud-main-grid">
+      <aside class="side-panel left-panel">
+        <section class="panel character-card">
+          <div class="panel-heading">
+            <span class="kicker">CHARACTER SHEET</span>
+          </div>
+          <dl class="state-grid">
+            <div><dt>HP</dt><dd id="stateHp">Unknown</dd></div>
+            <div><dt>MP</dt><dd id="stateMp">Unknown</dd></div>
+            <div><dt>å®¿å‚©æ‰‹æŒ‡</dt><dd id="stateFingers">Unknown</dd></div>
+            <div><dt>äº”æ¡å¥½æ„Ÿ</dt><dd id="stateGojo">Unknown</dd></div>
+            <div><dt>ä¸ƒæµ·å¥½æ„Ÿ</dt><dd id="stateNanami">Unknown</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">ATTRIBUTES</span></div>
+          <div id="stateAttributes" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">INVENTORY</span></div>
+          <div id="stateInventory" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="terminal-header">
+          <div>
+            <p class="kicker">OCCULT TACTICAL AI GM</p>
+            <h2>å’’æœ¯å›žæˆ˜ TRPG æŒ‡æŒ¥ç»ˆç«¯</h2>
+          </div>
+          <p class="terminal-subtitle">Mission log / command channel</p>
+        </header>
+
+        <section id="messages" class="messages" aria-live="polite">
+          <article class="message gm-message fade-in">
+            <div class="message-meta">AI GM SYSTEM</div>
+            <div class="message-content">
+              å·²è¿žæŽ¥æœ¬åœ°ä»£ç†ã€‚è¾“å…¥è¡ŒåŠ¨å£°æ˜ŽåŽï¼Œæˆ‘ä¼šå°†æ¶ˆæ¯å‘é€åˆ° Dify Chat APIï¼Œå¹¶åœ¨è¿™é‡Œæ˜¾ç¤º AI GM å›žåº”ã€‚
+            </div>
+          </article>
+        </section>
+
+        <section id="errorBox" class="error-box" hidden></section>
+
+        <section class="command-console" aria-label="Command console">
+          <section id="quickActions" class="quick-commands" aria-label="Quick action command presets">
+          </section>
+
+          <form id="chatForm" class="composer">
+            <textarea id="playerInput" rows="3" placeholder="è¾“å…¥ä½ çš„è¡ŒåŠ¨å£°æ˜Žã€‚Enter å‘é€ï¼ŒShift+Enter æ¢è¡Œã€‚"></textarea>
+            <button id="sendButton" type="submit">å‘é€</button>
+          </form>
+        </section>
+      </main>
+
+      <aside class="side-panel right-panel">
+        <section class="panel session-controls">
+          <div class="panel-heading">
+            <span class="kicker">SESSION CONTROLS</span>
+          </div>
+          <p id="sessionSaveStatus" class="session-status">Continue / Loaded automatically</p>
+          <div class="session-control-grid">
+            <button id="exportLogButton" type="button">Export Log</button>
+            <button id="exportJsonButton" type="button">Export Save JSON</button>
+            <button id="importJsonButton" type="button">Import Save JSON</button>
+            <button id="resetSessionButton" type="button" class="danger-action">New Session / Reset</button>
+          </div>
+          <input id="importSaveInput" type="file" accept="application/json,.json" hidden />
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">OBJECTIVE</span></div>
+          <p id="stateObjective" class="long-value">Unknown</p>
+        </section>
+
+        <section class="panel dice-card">
+          <div class="panel-heading"><span class="kicker">LAST DICE CHECK</span></div>
+          <dl class="dice-grid">
+            <div><dt>åˆ¤å®š</dt><dd id="diceLast">Unknown</dd></div>
+            <div><dt>å±žæ€§</dt><dd id="diceAttribute">Unknown</dd></div>
+            <div><dt>å±žæ€§å€¼</dt><dd id="diceAttributeValue">Unknown</dd></div>
+            <div><dt>éš¾åº¦</dt><dd id="diceDifficulty">Unknown</dd></div>
+            <div><dt>ç›®æ ‡å€¼</dt><dd id="diceTarget">Unknown</dd></div>
+            <div><dt>éª°å­</dt><dd id="diceRoll">Unknown</dd></div>
+            <div><dt>ç»“æžœ</dt><dd id="diceSuccess">Unknown</dd></div>
+            <div><dt>æš´å‡»</dt><dd id="diceCritical">Unknown</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">ACTIVE FLAGS</span></div>
+          <div id="stateFlags" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">SESSION MEMORY</span></div>
+          <p id="sessionSummary" class="long-value">Unknown</p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">STATE CHANGE LOG</span></div>
+          <div id="changeLog" class="log-list"><span class="muted">Unknown</span></div>
+        </section>
+
+        <details class="panel debug-sidebar-panel">
+          <summary class="panel-heading"><span class="kicker">DEBUG</span></summary>
+          <div class="debug-sidebar-body">
+            <div class="debug-block">
+              <span class="debug-label">PARSER WARNINGS</span>
+              <div id="parserWarnings" class="log-list"><span class="muted">None</span></div>
+            </div>
+            <div class="debug-block">
+              <span class="debug-label">PARSER SOURCE MAP</span>
+              <div id="parserSourceMap" class="log-list"><span class="muted">Unknown</span></div>
+            </div>
+          </div>
+        </details>
+      </aside>
+    </div>
+  </div>
+
+  <script type="module" src="./desktop.js"></script>
+</body>
+</html>
+
