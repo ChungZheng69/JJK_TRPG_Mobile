@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JJK TRPG AI GM Console</title>
+  <link rel="stylesheet" href="./desktop.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hud-status-bar">
+      <div class="status-identity">
+        <p class="kicker">当前角色 / ACTIVE PLAYER</p>
+        <h1 class="character-name" data-character-name>Loading...</h1>
+      </div>
+
+      <dl class="top-stat-grid" aria-label="Player status">
+        <div><dt>HP</dt><dd id="topStateHp">Unknown</dd></div>
+        <div><dt>MP</dt><dd id="topStateMp">Unknown</dd></div>
+        <div class="objective-stat"><dt>当前目标</dt><dd id="topStateObjective">Unknown</dd></div>
+      </dl>
+
+      <div class="header-actions">
+        <button id="debugModeToggle" class="debug-toggle" type="button" aria-pressed="false">DEBUG OFF</button>
+        <div id="conversationBadge" class="connection-badge">NEW SESSION</div>
+        <button id="resetConversation" class="icon-button" type="button" title="清除本地 conversation_id">RESET</button>
+      </div>
+    </header>
+
+    <div class="hud-main-grid">
+      <aside class="side-panel left-panel">
+        <section class="panel character-card">
+          <div class="panel-heading">
+            <span class="kicker">角色卡 / CHARACTER SHEET</span>
+          </div>
+          <dl class="state-grid">
+            <div><dt>HP</dt><dd id="stateHp">Unknown</dd></div>
+            <div><dt>MP</dt><dd id="stateMp">Unknown</dd></div>
+            <div><dt>宿傩手指</dt><dd id="stateFingers">Unknown</dd></div>
+            <div><dt>五条好感</dt><dd id="stateGojo">Unknown</dd></div>
+            <div><dt>七海好感</dt><dd id="stateNanami">Unknown</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">属性 / ATTRIBUTES</span></div>
+          <div id="stateAttributes" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">背囊 / INVENTORY</span></div>
+          <div id="stateInventory" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="terminal-header">
+          <div>
+            <p class="kicker">OCCULT TACTICAL AI GM</p>
+            <h2>咒术回战 TRPG 指挥终端</h2>
+          </div>
+          <p class="terminal-subtitle">Mission log / command channel</p>
+        </header>
+
+        <section id="messages" class="messages" aria-live="polite">
+          <article class="message gm-message fade-in">
+            <div class="message-meta">AI GM SYSTEM</div>
+            <div class="message-content">
+              已连接本地代理。输入行动声明后，我会将消息发送到 Dify Chat API，并在这里显示 AI GM 回应。
+            </div>
+          </article>
+        </section>
+
+        <section id="errorBox" class="error-box" hidden></section>
+
+        <section class="command-console" aria-label="Command console">
+          <section id="quickActions" class="quick-commands" aria-label="Quick action command presets">
+          </section>
+
+          <form id="chatForm" class="composer">
+            <textarea id="playerInput" rows="3" placeholder="输入你的行动声明。Enter 发送，Shift+Enter 换行。"></textarea>
+            <button id="sendButton" type="submit">发送</button>
+          </form>
+        </section>
+      </main>
+
+      <aside class="side-panel right-panel">
+        <section class="panel session-controls">
+          <div class="panel-heading">
+            <span class="kicker">SESSION CONTROLS</span>
+          </div>
+          <p id="sessionSaveStatus" class="session-status">Continue / Loaded automatically</p>
+          <div class="session-control-grid">
+            <button id="exportLogButton" type="button">Export Log</button>
+            <button id="exportJsonButton" type="button">Export Save JSON</button>
+            <button id="importJsonButton" type="button">Import Save JSON</button>
+            <button id="importStateOnlyButton" type="button">Import State Only</button>
+            <button id="clearChatHistoryButton" type="button">Clear Chat History</button>
+            <button id="resetFromConfigButton" type="button">Reset From Character Config</button>
+            <button id="resetSessionButton" type="button" class="danger-action">New Session / Reset</button>
+          </div>
+          <input id="importSaveInput" type="file" accept="application/json,.json" hidden />
+          <input id="importStateOnlyInput" type="file" accept="application/json,.json" hidden />
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">当前目标 / OBJECTIVE</span></div>
+          <p id="stateObjective" class="long-value">Unknown</p>
+        </section>
+
+        <section class="panel dice-card">
+          <div class="panel-heading"><span class="kicker">最近判定 / LAST DICE CHECK</span></div>
+          <dl class="dice-grid">
+            <div><dt>判定</dt><dd id="diceLast">Unknown</dd></div>
+            <div><dt>属性</dt><dd id="diceAttribute">Unknown</dd></div>
+            <div><dt>属性值</dt><dd id="diceAttributeValue">Unknown</dd></div>
+            <div><dt>难度</dt><dd id="diceDifficulty">Unknown</dd></div>
+            <div><dt>目标值</dt><dd id="diceTarget">Unknown</dd></div>
+            <div><dt>骰子</dt><dd id="diceRoll">Unknown</dd></div>
+            <div><dt>结果</dt><dd id="diceSuccess">Unknown</dd></div>
+            <div><dt>暴击</dt><dd id="diceCritical">Unknown</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">活动标记 / ACTIVE FLAGS</span></div>
+          <div id="stateFlags" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">剧情记忆 / SESSION MEMORY</span></div>
+          <p id="sessionSummary" class="long-value">Unknown</p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">状态变化 / STATE CHANGE LOG</span></div>
+          <div id="changeLog" class="log-list"><span class="muted">Unknown</span></div>
+        </section>
+
+        <details class="panel debug-sidebar-panel">
+          <summary class="panel-heading"><span class="kicker">DEBUG</span></summary>
+          <div class="debug-sidebar-body">
+            <div class="debug-block state-editor">
+              <span class="debug-label">STATE EDITOR</span>
+              <div class="state-editor-grid">
+                <label>HP <input id="stateEditorHp" type="number" min="0" max="100" /></label>
+                <label>MP <input id="stateEditorMp" type="number" min="0" max="100" /></label>
+                <label>Gojo Affinity <input id="stateEditorGojo" type="number" min="0" max="100" /></label>
+                <label>Nanami Affinity <input id="stateEditorNanami" type="number" min="0" max="100" /></label>
+                <label>Sukuna Fingers <input id="stateEditorFingers" type="number" min="0" max="20" /></label>
+                <label class="state-editor-wide">Objective <textarea id="stateEditorObjective" rows="3"></textarea></label>
+                <label class="state-editor-wide">Attributes JSON <textarea id="stateEditorAttributes" rows="6"></textarea></label>
+                <label class="state-editor-wide">Inventory JSON <textarea id="stateEditorInventory" rows="5"></textarea></label>
+                <label class="state-editor-wide">Flags JSON <textarea id="stateEditorFlags" rows="6"></textarea></label>
+              </div>
+              <button id="applyEditedStateButton" type="button">Apply Edited State</button>
+              <p id="stateEditorStatus" class="session-status">Edited state will sync on the next Dify request.</p>
+            </div>
+            <div class="debug-block">
+              <span class="debug-label">解析警告 / PARSER WARNINGS</span>
+              <div id="parserWarnings" class="log-list"><span class="muted">None</span></div>
+            </div>
+            <div class="debug-block">
+              <span class="debug-label">PARSER SOURCE MAP</span>
+              <div id="parserSourceMap" class="log-list"><span class="muted">Unknown</span></div>
+            </div>
+          </div>
+        </details>
+      </aside>
+    </div>
+  </div>
+
+  <script type="module" src="./desktop.js"></script>
+</body>
+</html>
