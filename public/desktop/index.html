@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JJK TRPG AI GM Console</title>
+  <link rel="stylesheet" href="./desktop.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hud-status-bar">
+      <div class="status-identity">
+        <p class="kicker">当前角色 / ACTIVE PLAYER</p>
+        <h1 class="character-name" data-character-name>Loading...</h1>
+      </div>
+
+      <dl class="top-stat-grid" aria-label="Player status">
+        <div><dt>HP</dt><dd id="topStateHp">Unknown</dd></div>
+        <div><dt>MP</dt><dd id="topStateMp">Unknown</dd></div>
+        <div class="objective-stat"><dt>当前目标</dt><dd id="topStateObjective">Unknown</dd></div>
+      </dl>
+
+      <div class="header-actions">
+        <button id="collapseAllPanelsButton" class="icon-button" type="button">Collapse All</button>
+        <button id="expandAllPanelsButton" class="icon-button" type="button">Expand All</button>
+        <button id="focusModeButton" class="icon-button" type="button" aria-pressed="false">Focus Mode</button>
+        <button id="debugModeToggle" class="debug-toggle" type="button" aria-pressed="false">DEBUG OFF</button>
+        <div id="conversationBadge" class="connection-badge">NEW SESSION</div>
+        <button id="resetConversation" class="icon-button" type="button" title="清除本地 conversation_id">RESET</button>
+      </div>
+    </header>
+
+    <div class="hud-main-grid">
+      <aside class="side-panel left-panel">
+        <section class="panel character-card">
+          <div class="panel-heading">
+            <span class="kicker">角色卡 / CHARACTER SHEET</span>
+          </div>
+          <dl class="state-grid">
+            <div><dt>年龄</dt><dd id="stateAge">Unknown</dd></div>
+            <div><dt>身份</dt><dd id="stateRole">Unknown</dd></div>
+            <div><dt>等级</dt><dd id="stateRank">Unknown</dd></div>
+            <div><dt>术式</dt><dd id="stateTechnique">Unknown</dd></div>
+            <div><dt>HP</dt><dd id="stateHp">Unknown</dd></div>
+            <div><dt>MP</dt><dd id="stateMp">Unknown</dd></div>
+            <div><dt>宿傩手指</dt><dd id="stateFingers">Unknown</dd></div>
+            <div><dt>五条好感</dt><dd id="stateGojo">Unknown</dd></div>
+            <div><dt>七海好感</dt><dd id="stateNanami">Unknown</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">属性 / ATTRIBUTES</span></div>
+          <div id="stateAttributes" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">背囊 / INVENTORY</span></div>
+          <div id="stateInventory" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="terminal-header">
+          <div>
+            <p class="kicker">OCCULT TACTICAL AI GM</p>
+            <h2>咒术回战 TRPG 指挥终端</h2>
+          </div>
+          <p class="terminal-subtitle">Mission log / command channel</p>
+        </header>
+
+        <section id="messages" class="messages" aria-live="polite">
+          <article class="message gm-message fade-in">
+            <div class="message-meta">AI GM SYSTEM</div>
+            <div class="message-content">
+              已连接本地 Node.js 游戏引擎。输入行动声明后，我会在后端裁定机制、掷骰并生成 AI GM 回应。
+            </div>
+          </article>
+        </section>
+
+        <section id="errorBox" class="error-box" hidden></section>
+
+        <section class="command-console" aria-label="Command console">
+          <section id="quickActions" class="quick-commands" aria-label="Quick action command presets">
+          </section>
+
+          <form id="chatForm" class="composer">
+            <textarea id="playerInput" rows="3" placeholder="输入你的行动声明。Enter 发送，Shift+Enter 换行。"></textarea>
+            <button id="sendButton" type="submit">发送</button>
+          </form>
+        </section>
+      </main>
+
+      <aside class="side-panel right-panel">
+        <section class="panel session-controls">
+          <div class="panel-heading">
+            <span class="kicker">SESSION CONTROLS</span>
+          </div>
+          <p id="sessionSaveStatus" class="session-status">Continue / Loaded automatically</p>
+          <div class="session-control-grid">
+            <button id="saveLocalButton" type="button">Save</button>
+            <button id="loadLocalButton" type="button">Load</button>
+            <button id="exportLogButton" type="button">Export Log</button>
+            <button id="exportJsonButton" type="button">Export Save JSON</button>
+            <button id="importJsonButton" type="button">Import Save JSON</button>
+            <button id="importStateOnlyButton" type="button">Import State Only</button>
+            <button id="clearChatHistoryButton" type="button">Clear Chat History</button>
+            <button id="editCharacterButton" type="button">Edit Current Character</button>
+            <button id="resetFromConfigButton" type="button">Reset From Character Config</button>
+            <button id="resetSessionButton" type="button" class="danger-action">New Session / Reset</button>
+          </div>
+          <div class="cloud-save-controls">
+            <label>Save Code <input id="cloudSaveCode" type="text" maxlength="40" autocomplete="off" placeholder="my-save-code" /></label>
+            <div class="session-control-grid">
+              <button id="uploadCloudSaveButton" type="button">Upload Cloud Save</button>
+              <button id="loadCloudSaveButton" type="button">Load Cloud Save</button>
+            </div>
+            <p id="cloudSaveStatus" class="session-status">Cloud save is optional.</p>
+          </div>
+          <input id="importSaveInput" type="file" accept="application/json,.json" hidden />
+          <input id="importStateOnlyInput" type="file" accept="application/json,.json" hidden />
+        </section>
+
+        <section class="panel api-key-settings">
+          <div class="panel-heading"><span class="kicker">API KEY SETTINGS</span></div>
+          <div class="api-key-controls">
+            <label>Gemini API Key
+              <input id="userGeminiApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste Gemini API key" />
+            </label>
+            <label class="inline-checkbox">
+              <input id="userGeminiSaveOnDevice" type="checkbox" />
+              <span>Save on this device</span>
+            </label>
+            <div class="session-control-grid">
+              <button id="saveUserGeminiApiKeyButton" type="button">Save Key</button>
+              <button id="clearUserGeminiApiKeyButton" type="button">Clear Key</button>
+            </div>
+            <p class="session-status">Your API key is used only to call Gemini from this app. Do not share your key publicly. Usage may consume your Google AI Studio quota.</p>
+            <p id="userGeminiApiKeyStatus" class="session-status">No user Gemini API key set.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">当前目标 / OBJECTIVE</span></div>
+          <p id="stateObjective" class="long-value">Unknown</p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">任务日志 / QUEST LOG</span></div>
+          <div id="stateQuestLog" class="quest-log"><span class="muted">Unknown</span></div>
+        </section>
+
+        <section id="combatPanel" class="panel battle-hud" hidden>
+          <div class="panel-heading"><span class="kicker">战斗 / BATTLE</span></div>
+          <div id="combatEnemy" class="battle-enemy">Unknown</div>
+          <div class="battle-hp-bar" aria-label="Enemy HP"><span id="combatEnemyHpBar"></span></div>
+          <div id="combatEnemyDetails" class="battle-details">Unknown</div>
+          <div id="combatSkillButtons" class="skill-button-grid"></div>
+          <div id="combatLog" class="log-list"><span class="muted">Unknown</span></div>
+        </section>
+
+        <section class="panel dice-card">
+          <div class="panel-heading"><span class="kicker">最近判定 / LAST DICE CHECK</span></div>
+          <dl class="dice-grid">
+            <div><dt>判定</dt><dd id="diceLast">Unknown</dd></div>
+            <div><dt>属性</dt><dd id="diceAttribute">Unknown</dd></div>
+            <div><dt>属性值</dt><dd id="diceAttributeValue">Unknown</dd></div>
+            <div><dt>难度</dt><dd id="diceDifficulty">Unknown</dd></div>
+            <div><dt>目标值</dt><dd id="diceTarget">Unknown</dd></div>
+            <div><dt>骰子</dt><dd id="diceRoll">Unknown</dd></div>
+            <div><dt>结果</dt><dd id="diceSuccess">Unknown</dd></div>
+            <div><dt>暴击</dt><dd id="diceCritical">Unknown</dd></div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">活动标记 / ACTIVE FLAGS</span></div>
+          <div id="stateFlags" class="tag-list"><span class="tag muted">Unknown</span></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">剧情记忆 / SESSION MEMORY</span></div>
+          <p id="sessionSummary" class="long-value"></p>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading"><span class="kicker">状态变化 / STATE CHANGE LOG</span></div>
+          <div id="changeLog" class="log-list"><span class="muted">Unknown</span></div>
+        </section>
+
+        <details class="panel debug-sidebar-panel">
+          <summary class="panel-heading"><span class="kicker">DEBUG</span></summary>
+          <div class="debug-sidebar-body">
+            <div class="debug-block state-editor">
+              <span class="debug-label">STATE EDITOR</span>
+              <div class="state-editor-grid">
+                <label>HP <input id="stateEditorHp" type="number" min="0" max="100" /></label>
+                <label>MP <input id="stateEditorMp" type="number" min="0" max="100" /></label>
+                <label>Gojo Affinity <input id="stateEditorGojo" type="number" min="0" max="100" /></label>
+                <label>Nanami Affinity <input id="stateEditorNanami" type="number" min="0" max="100" /></label>
+                <label>Sukuna Fingers <input id="stateEditorFingers" type="number" min="0" max="20" /></label>
+                <label class="state-editor-wide">Objective <textarea id="stateEditorObjective" rows="3"></textarea></label>
+                <label class="state-editor-wide">Attributes JSON <textarea id="stateEditorAttributes" rows="6"></textarea></label>
+                <label class="state-editor-wide">Inventory JSON <textarea id="stateEditorInventory" rows="5"></textarea></label>
+                <label class="state-editor-wide">Flags JSON <textarea id="stateEditorFlags" rows="6"></textarea></label>
+              </div>
+              <button id="applyEditedStateButton" type="button">Apply Edited State</button>
+              <p id="stateEditorStatus" class="session-status">Edited state will sync on the next engine request.</p>
+            </div>
+            <div class="debug-block">
+              <span class="debug-label">解析警告 / PARSER WARNINGS</span>
+              <div id="parserWarnings" class="log-list"><span class="muted">None</span></div>
+            </div>
+            <div class="debug-block">
+              <span class="debug-label">PARSER SOURCE MAP</span>
+              <div id="parserSourceMap" class="log-list"><span class="muted">Unknown</span></div>
+            </div>
+          </div>
+        </details>
+      </aside>
+    </div>
+  </div>
+
+  <dialog id="characterCreatorDialog" class="character-creator-dialog">
+    <form id="characterCreatorForm" method="dialog" class="character-creator">
+      <div class="character-creator-header">
+        <div>
+          <p class="kicker">CHARACTER CREATOR</p>
+          <h2 id="characterCreatorTitle">Create Character</h2>
+        </div>
+        <button id="characterCreatorCancelButton" type="button" class="icon-button">Cancel</button>
+      </div>
+
+      <div class="character-creator-actions">
+        <button id="startDefaultCharacterButton" type="button">Start With Default 雨宫朔</button>
+        <button id="createCustomCharacterButton" type="button">Create Custom Character</button>
+      </div>
+
+      <div class="character-creator-grid">
+        <label>Name <input id="creatorName" type="text" required /></label>
+        <label>Age <input id="creatorAge" type="number" min="1" max="120" /></label>
+        <label>Gender <input id="creatorGender" type="text" /></label>
+        <label>Role / Identity <input id="creatorRole" type="text" /></label>
+        <label>Affiliation <input id="creatorAffiliation" type="text" /></label>
+        <label>Rank <input id="creatorRank" type="text" /></label>
+        <label class="character-creator-wide">Appearance <textarea id="creatorAppearance" rows="2"></textarea></label>
+        <label class="character-creator-wide">Personality <textarea id="creatorPersonality" rows="2"></textarea></label>
+        <label class="character-creator-wide">Background <textarea id="creatorBackground" rows="3"></textarea></label>
+        <label class="character-creator-wide">Core Motivation <textarea id="creatorMotivation" rows="2"></textarea></label>
+        <label>Technique Name <input id="creatorTechniqueName" type="text" required /></label>
+        <label class="character-creator-wide">Technique Description <textarea id="creatorTechniqueDescription" rows="3"></textarea></label>
+        <label class="character-creator-wide">Technique Strengths <textarea id="creatorTechniqueStrengths" rows="2" placeholder="One per line"></textarea></label>
+        <label class="character-creator-wide">Technique Weaknesses <textarea id="creatorTechniqueWeaknesses" rows="2" placeholder="One per line"></textarea></label>
+      </div>
+
+      <div class="character-attribute-editor">
+        <div class="character-creator-subhead">
+          <strong>Attributes</strong>
+          <span id="creatorAttributeTotal">0 / 235</span>
+        </div>
+        <div class="character-attribute-grid">
+          <label>Physique <input id="creatorAttrPhysique" type="number" min="30" max="80" /></label>
+          <label>Technique <input id="creatorAttrTechnique" type="number" min="30" max="80" /></label>
+          <label>Cursed Energy <input id="creatorAttrCursedEnergy" type="number" min="30" max="80" /></label>
+          <label>Mind <input id="creatorAttrMind" type="number" min="30" max="80" /></label>
+        </div>
+        <p id="creatorValidationStatus" class="session-status"></p>
+      </div>
+
+      <div class="character-creator-footer">
+        <button id="saveCharacterButton" type="button">Save Character</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="./desktop.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+{
+  "test-04": {
+    "saveCode": "test-04",
+    "updatedAt": "2026-06-05T05:08:46.895Z",
+    "saveData": {
+      "version": 1,
+      "saveCode": "test-04",
+      "updatedAt": "2026-06-05T05:08:46.895Z",
+      "gameState": {
+        "characterName": "雨宫朔",
+        "age": 17,
+        "rank": "自由术师",
+        "background": "地方自由术师出身，尚未加入高专。雨宫家曾与禅院家合作负责外围封锁任务，但朔的姐姐在一次禅院相关任务中死亡，责任却被推回雨宫家。此后朔独自行动，暗中调查禅院家相关记录，并怀有冷静的复仇执念。",
+        "techniqueName": "雨债斩",
+        "techniqueDescription": "战斗开始后展开咒雨。敌人在雨中暴露越久，且移动、突进、闪避、挥击越多，就越会累积雨债，动作逐渐变慢。朔可在敌人迟缓后将雨势压缩成雨刃、风刃或切断线，释放高爆发斩击。",
+        "hp": 100,
+        "maxHp": 100,
+        "mp": 58,
+        "maxMp": 100,
+        "objective": "以自由术师身份独自行动，调查禅院家相关任务记录，并寻找姐姐死亡事件的真相。",
+        "attributes": {
+          "physique": 52,
+          "technique": 70,
+          "cursed_energy": 58,
+          "mind": 55,
+          "_exp": {
+            "physique": 0,
+            "technique": 0,
+            "cursed_energy": 0,
+            "mind": 1
+          }
+        },
+        "attributeMax": 80,
+        "inventory": {
+          "items": []
+        },
+        "flags": {
+          "FLAG_free_sorcerer": true,
+          "FLAG_independent_sorcerer": true,
+          "FLAG_joined_jujutsu_high": false,
+          "FLAG_zenin_grudge": true,
+          "FLAG_revenge_target_locked": true,
+          "FLAG_collect_rain_stance": false,
+          "FLAG_rain_stage": 0,
+          "FLAG_fatigue_level": 0,
+          "FLAG_overload_risk": 0,
+          "FLAG_weakness_exposed": false
+        },
+        "dice": {
+          "required": true,
+          "dice_required": true,
+          "dice": "1d100",
+          "attribute": "mind",
+          "roll": 2,
+          "attributeScore": 55,
+          "base_attribute": 55,
+          "attribute_score": 55,
+          "difficulty": 10,
+          "difficulty_modifier": 10,
+          "finalTarget": 45,
+          "final_target": 45,
+          "target": 45,
+          "success": true,
+          "criticalSuccess": true,
+          "criticalFailure": false,
+          "critical_success": true,
+          "critical_failure": false,
+          "degree": "critical_success",
+          "action_type": "exploration",
+          "failure_consequence": "你的警惕性虽高，但未能发现隐藏在暗处的窥视者或布置精巧的咒力残秽，行踪可能已暴露。"
+        },
+        "lastDice": {
+          "required": true,
+          "dice_required": true,
+          "dice": "1d100",
+          "attribute": "mind",
+          "roll": 2,
+          "attributeScore": 55,
+          "base_attribute": 55,
+          "attribute_score": 55,
+          "difficulty": 10,
+          "difficulty_modifier": 10,
+          "finalTarget": 45,
+          "final_target": 45,
+          "target": 45,
+          "success": true,
+          "criticalSuccess": true,
+          "criticalFailure": false,
+          "critical_success": true,
+          "critical_failure": false,
+          "degree": "critical_success",
+          "action_type": "exploration",
+          "failure_consequence": "你的警惕性虽高，但未能发现隐藏在暗处的窥视者或布置精巧的咒力残秽，行踪可能已暴露。"
+        },
+        "sessionSummary": "雨宫朔为调查姐姐死亡真相，深入禅院家封锁的边缘地带。凭借敏锐的洞察力，朔在压抑的陈旧咒力环境中成功避开了禅院家布下的隐蔽结界“探针”，并反向捕捉到了一台负责监视的微型式神傀儡。\n\n目前，朔正处于该区域的阴影中，虽然暂时未被发现，但已进入禅院家的严密监控视界。前方转角处出现了两名正在排查残秽的禅院家外围人员，局势极度危险。朔目前面临抉择：是继续潜入绕过守卫，还是先行处理掉监视傀儡以断绝追踪线索。禅院家对该区域的严密布防，进一步证实了其掩盖事故真相的意图，而朔的每一步行动都处于被发现的边缘。",
+        "changeLog": [
+          {
+            "field": "Attributes._exp.mind",
+            "old": 0,
+            "new": 1,
+            "reason": "Applied attribute EXP change."
+          }
+        ],
+        "warnings": [],
+        "sourceMap": {},
+        "character_name": "雨宫朔",
+        "technique_name": "雨债斩",
+        "technique_description": "战斗开始后展开咒雨。敌人在雨中暴露越久，且移动、突进、闪避、挥击越多，就越会累积雨债，动作逐渐变慢。朔可在敌人迟缓后将雨势压缩成雨刃、风刃或切断线，释放高爆发斩击。",
+        "max_hp": 100,
+        "max_mp": 100,
+        "attribute_max": 80,
+        "gojo_affinity": 0,
+        "gojoAffinity": 0,
+        "Gojo_Affinity": 0,
+        "nam_affinity": 0,
+        "nanami_affinity": 0,
+        "nanamiAffinity": 0,
+        "Nanami_Affinity": 0,
+        "sukuna_fingers": 0,
+        "sukunaFingers": 0
+      },
+      "chatHistory": [
+        {
+          "role": "player",
+          "text": "我放慢脚步，保持警戒，谨慎向前推进。",
+          "timestamp": "2026-06-05T04:31:26.596Z"
+        },
+        {
+          "role": "gm",
+          "text": "空气中弥漫着一股陈腐的铁锈味，这是咒术界遗留的“陈旧咒力”特有的气味，混合着雨水冲刷后的土腥气。雨宫朔放慢了脚步，身体紧绷，每一块肌肉都调整到了随时能爆发的状态。在这片被禅院家刻意封锁的边缘地带，空气仿佛凝固，连风的流动都显得极不自然。\n\n凭借着对周遭环境敏锐的洞察，你不仅没有被这压抑的氛围所迷惑，反而察觉到了几处极其隐蔽的术式残秽。那些残秽被精巧地伪装成自然咒力波动，若不是你时刻保持着高度的警觉并精准捕捉到了那一丝频率的不协调，恐怕早已一脚踏入对方布下的“探针”陷阱中。\n\n这显然是禅院家惯用的手段——利用结界术的微小扰动来监测入侵者。你悄无声息地向侧方偏转了重心，动作流畅得如同在暴雨中穿行的幽灵，不仅避开了那道如同丝线般细密的感知网，甚至还借着阴影的掩护，反向捕捉到了隐藏在暗处的一台微型式神傀儡。\n\n那傀儡正盘踞在废墟顶部的砖石间，幽绿的眼眸闪烁着冰冷的光，正对着你刚才预定的行进路线。如果刚才你选择了大步疾行，此刻恐怕早已被对方的术式锁定，行踪彻底暴露。禅院家的人比预想中更加谨慎，他们似乎早已预料到有人会调查那场事故，并在此布下了严密的“耳目”。\n\n你站在阴影中，感受着指尖流动的咒力，内心并没有因为避开陷阱而放松。这台傀儡的存在证明了禅院家对这片区域的严密监控，而你现在正处于一个极度危险的真空地带——你已经进入了他们的视界，虽然暂时未被发现，但每一秒的停留都像是在刀尖上行走。\n\n前方转角处，隐约传来了低沉的交谈声，那是两名禅院家外围人员的声音，他们似乎正在检查附近的残秽痕迹。你现在的处境非常微妙：你是选择继续潜入，利用刚才的先机绕过他们，还是寻找机会处理掉那个监视傀儡，彻底截断他们的追踪线索？无论作何选择，御三家那如同腐骨之蛆般的监视压力，正随着你的每一次呼吸，沉重地压在你的脊背上。",
+          "timestamp": "2026-06-05T04:31:26.596Z"
+        }
+      ],
+      "sessionSummary": "雨宫朔为调查姐姐死亡真相，深入禅院家封锁的边缘地带。凭借敏锐的洞察力，朔在压抑的陈旧咒力环境中成功避开了禅院家布下的隐蔽结界“探针”，并反向捕捉到了一台负责监视的微型式神傀儡。\n\n目前，朔正处于该区域的阴影中，虽然暂时未被发现，但已进入禅院家的严密监控视界。前方转角处出现了两名正在排查残秽的禅院家外围人员，局势极度危险。朔目前面临抉择：是继续潜入绕过守卫，还是先行处理掉监视傀儡以断绝追踪线索。禅院家对该区域的严密布防，进一步证实了其掩盖事故真相的意图，而朔的每一步行动都处于被发现的边缘。",
+      "turnCount": 1
+    }
+  },
+  "test-05": {
+    "saveCode": "test-05",
+    "updatedAt": "2026-06-05T07:47:39.708Z",
+    "saveData": {
+      "version": 1,
+      "saveCode": "test-05",
+      "updatedAt": "2026-06-05T07:47:39.708Z",
+      "gameState": {
+        "character": {
+          "name": "雨宫朔",
+          "age": 17,
+          "gender": "",
+          "role": "自由术师",
+          "affiliation": "未加入高专",
+          "rank": "准一级候补",
+          "appearance": "",
+          "personality": "",
+          "background": "地方自由术师出身，尚未加入高专。雨宫家曾与禅院家合作负责外围封锁任务，但朔的姐姐在一次禅院相关任务中死亡，责任却被推回雨宫家。此后朔独自行动，暗中调查禅院家相关记录，并怀有冷静的复仇执念。",
+          "coreMotivation": "调查姐姐雨宫澪死亡事件的真相，并查清禅院家任务记录中的隐瞒。",
+          "technique": {
+            "name": "雨债斩",
+            "description": "战斗开始后展开咒雨。敌人在雨中暴露越久，且移动、突进、闪避、挥击越多，就越会累积雨债，动作逐渐变慢。朔可在敌人迟缓后将雨势压缩成雨刃、风刃或切断线，释放高爆发斩击。",
+            "strengths": [
+              "持续压制",
+              "限制高速移动",
+              "后期爆发斩击"
+            ],
+            "weaknesses": [
+              "需要雨势铺场",
+              "对快速脱离或强行反制较敏感"
+            ],
+            "stages": []
+          }
+        },
+        "character_name": "雨宫朔",
+        "characterName": "雨宫朔",
+        "age": 17,
+        "rank": "准一级候补",
+        "background": "地方自由术师出身，尚未加入高专。雨宫家曾与禅院家合作负责外围封锁任务，但朔的姐姐在一次禅院相关任务中死亡，责任却被推回雨宫家。此后朔独自行动，暗中调查禅院家相关记录，并怀有冷静的复仇执念。",
+        "technique_name": "雨债斩",
+        "techniqueName": "雨债斩",
+        "technique_description": "战斗开始后展开咒雨。敌人在雨中暴露越久，且移动、突进、闪避、挥击越多，就越会累积雨债，动作逐渐变慢。朔可在敌人迟缓后将雨势压缩成雨刃、风刃或切断线，释放高爆发斩击。",
+        "techniqueDescription": "战斗开始后展开咒雨。敌人在雨中暴露越久，且移动、突进、闪避、挥击越多，就越会累积雨债，动作逐渐变慢。朔可在敌人迟缓后将雨势压缩成雨刃、风刃或切断线，释放高爆发斩击。",
+        "hp": 100,
+        "maxHp": 100,
+        "mp": 53,
+        "maxMp": 100,
+        "objective": "确认铁门后的咒力残秽来源，并判断是否与禅院家封锁痕迹有关。",
+        "attributes": {
+          "physique": 52,
+          "technique": 70,
+          "cursed_energy": 58,
+          "mind": 55,
+          "_exp": {
+            "physique": 0,
+            "technique": 5,
+            "cursed_energy": 0,
+            "mind": 3
+          }
+        },
+        "attributeMax": 80,
+        "inventory": {
+          "items": []
+        },
+        "flags": {
+          "FLAG_free_sorcerer": true,
+          "FLAG_independent_sorcerer": true,
+          "FLAG_joined_jujutsu_high": false,
+          "FLAG_zenin_grudge": true,
+          "FLAG_revenge_target_locked": true,
+          "FLAG_collect_rain_stance": false,
+          "FLAG_rain_stage": 0,
+          "FLAG_fatigue_level": 0,
+          "FLAG_overload_risk": 0,
+          "FLAG_weakness_exposed": true,
+          "FLAG_taunted_target": true
+        },
+        "questLog": {
+          "main": {
+            "id": "main_001",
+            "title": "调查姐姐死亡真相",
+            "description": "以自由术师身份调查雨宫澪死亡事件与禅院家任务记录。",
+            "status": "active",
+            "progress": 0
+          },
+          "active": [
+            {
+              "id": "quest_001",
+              "title": "调查旧商业街铁门",
+              "description": "确认铁门后的咒力残秽来源，并判断是否与禅院家封锁痕迹有关。",
+              "status": "active",
+              "progress": 70,
+              "clues": []
+            }
+          ],
+          "completed": [],
+          "failed": []
+        },
+        "dice": {
+          "required": true,
+          "dice_required": true,
+          "dice": "1d100",
+          "attribute": "mind",
+          "roll": 80,
+          "attributeScore": 55,
+          "base_attribute": 55,
+          "attribute_score": 55,
+          "difficulty": 15,
+          "difficulty_modifier": 15,
+          "finalTarget": 40,
+          "final_target": 40,
+          "target": 40,
+          "success": false,
+          "criticalSuccess": false,
+          "criticalFailure": false,
+          "critical_success": false,
+          "critical_failure": false,
+          "degree": "failure",
+          "action_type": "social_combat",
+          "failure_consequence": "你的嘲讽对这团混沌的恶意毫无意义，对方完全无视了你的言语，反而因为你暴露了位置而加速了咒力侵蚀，标记深度加深。"
+        },
+        "lastDice": {
+          "required": true,
+          "dice_required": true,
+          "dice": "1d100",
+          "attribute": "mind",
+          "roll": 80,
+          "attributeScore": 55,
+          "base_attribute": 55,
+          "attribute_score": 55,
+          "difficulty": 15,
+          "difficulty_modifier": 15,
+          "finalTarget": 40,
+          "final_target": 40,
+          "target": 40,
+          "success": false,
+          "criticalSuccess": false,
+          "criticalFailure": false,
+          "critical_success": false,
+          "critical_failure": false,
+          "degree": "failure",
+          "action_type": "social_combat",
+          "failure_consequence": "你的嘲讽对这团混沌的恶意毫无意义，对方完全无视了你的言语，反而因为你暴露了位置而加速了咒力侵蚀，标记深度加深。"
+        },
+        "sessionSummary": "",
+        "changeLog": [
+          {
+            "field": "Active_Flag.FLAG_taunted_target",
+            "old": false,
+            "new": true,
+            "reason": "Added flag."
+          },
+          {
+            "field": "objective",
+            "old": "确认铁门后的咒力残秽来源，并判断是否与禅院家封锁痕迹有关。",
+            "new": "在被咒力标记完全锁定前，寻找机会反击或脱身。",
+            "reason": "Updated objective."
+          },
+          {
+            "field": "Attributes._exp.mind",
+            "old": 2,
+            "new": 3,
+            "reason": "Applied attribute EXP change."
+          },
+          {
+            "field": "objective",
+            "old": "在被咒力标记完全锁定前，寻找机会反击或脱身。",
+            "new": "确认铁门后的咒力残秽来源，并判断是否与禅院家封锁痕迹有关。",
+            "reason": "Mirrored objective from quest log."
+          }
+        ],
+        "warnings": [],
+        "sourceMap": {},
+        "max_hp": 100,
+        "max_mp": 100,
+        "attribute_max": 80,
+        "gojo_affinity": 0,
+        "gojoAffinity": 0,
+        "Gojo_Affinity": 0,
+        "nam_affinity": 0,
+        "nanami_affinity": 0,
+        "nanamiAffinity": 0,
+        "Nanami_Affinity": 0,
+        "sukuna_fingers": 0,
+        "sukunaFingers": 0,
+        "timeline": {
+          "turn": 4,
+          "day": "第1天",
+          "timeOfDay": "傍晚",
+          "location": "未确定地点",
+          "scene": "开场"
+        }
+      },
+      "chatHistory": [
+        {
+          "role": "player",
+          "text": "我观察铁门附近有没有禅院家的封锁痕迹。",
+          "timestamp": "2026-06-05T07:41:44.606Z"
+        },
+        {
+          "role": "gm",
+          "text": "【时间】\n第2回合｜第1天 / 傍晚｜旧商业街·生锈铁门前\n\n【剧情】\n暮色如淤血般渗入这片废弃的商业街，铁门上的锈迹在夕阳下泛着暗红。雨宫朔屏住呼吸，指尖轻轻触碰门框边缘的一处细微凹痕，那是咒力被强行剥离后留下的焦灼感。\n\n随着指尖的深入，一股熟悉而冰冷的触感顺着神经末梢爬上脊髓。那是禅院家特有的、傲慢且排他的咒力残留。那种特有的术式运行轨迹，正如当年姐姐留下的最后一份记录中描述的那般——粗暴、高效，且完全不顾及外围术师的死活。\n\n这绝非巧合，而是确凿无疑的证据。当年那场夺走姐姐生命的“任务”，其真相正随着这丝残秽在空气中缓缓浮现。这里曾被禅院家的人刻意封锁，为了掩盖某种不为人知的真相，他们甚至不惜在此布下双重禁制。\n\n然而，铁门后的黑暗中传来一阵低沉的搅动声，仿佛有什么东西被这一丝微弱的术式引动。那不是单纯的咒灵嘶吼，而是某种被封印已久的、混杂了禅院家咒力碎片的混沌聚合体，正隔着铁门贪婪地嗅探着生者的气味。\n\n【当前压力】\n铁门后的咒力残秽已因你的探查而产生了连锁反应，某种被封锁的危险存在正在苏醒，你需要决定是立即撤离还是深入虎穴。\n\n【选择】\nA. 谨慎观察：利用咒力感知探查铁门后的结构弱点，评估撤退路线。\nB. 继续深入：强行破开这道封锁铁门，直面门后被掩盖的“真相”。\nC. 布置陷阱：以“雨债斩”展开最初的咒雨领域，诱敌出来进行反击。\nD. 自由行动：输入你的做法。",
+          "timestamp": "2026-06-05T07:41:44.606Z"
+        },
+        {
+          "role": "player",
+          "text": "A. 谨慎观察",
+          "timestamp": "2026-06-05T07:42:15.843Z"
+        },
+        {
+          "role": "gm",
+          "text": "【时间】\n第3回合｜第1天 / 傍晚｜旧商业街·生锈铁门前\n\n【剧情】\n雨宫朔的感知如同触电般缩回。就在指尖贴合铁门的瞬间，那层看似荒废的锈迹之下，竟隐藏着一道极其隐蔽的“反噬式”。那不是为了阻挡外敌，而是为了抹除窥探者。\n\n那股属于禅院家的残秽瞬间被激活，如同一条潜伏在阴影中的毒蛇，顺着指尖的咒力回路疯狂反噬。大脑深处传来一阵剧烈的刺痛，朔强行切断了感知，但那股阴寒的咒力已经顺着手臂经脉攀爬，像是在这具躯体上标记了某种坐标。\n\n铁门后的黑暗中，搅动声戛然而止。那东西显然已经察觉到了窥探者的存在，且不仅仅是锁定了位置，更像是在评估猎物的价值。空气中的雨意变得粘稠，四周的商业街仿佛瞬间陷入了死寂，连风声都被抽干。\n\n那种被禅院家刻意遗留在现场的“饵”，正以此为契机缓缓渗出。铁门的缝隙中，漆黑的咒力流淌而出，凝聚成扭曲的恶意。朔意识到，自己那点谨慎的观察举动，反而成为了触动开关的扳机。\n\n【当前压力】\n你的行踪已被门后的怪物锁定，对方正在通过残留在你身上的咒力标记进行定位，撤退路径已被封死，必须尽快做出应对。\n\n【选择】\nA. 寻找掩体：利用周围废弃的商铺结构进行隐蔽，试图干扰对方的追踪。\nB. 强行撤离：不再顾忌咒力消耗，以术式强行震开标记，向人流密集的区域撤退。\nC. 展开领域：顺势展开“雨债斩”，在对方破门而出的瞬间将其纳入战斗范围，先发制人。\nD. 自由行动：输入你的做法。",
+          "timestamp": "2026-06-05T07:42:15.843Z"
+        },
+        {
+          "role": "player",
+          "text": "大声嘲讽对方",
+          "timestamp": "2026-06-05T07:43:06.862Z"
+        },
+        {
+          "role": "gm",
+          "text": "【时间】\n第4回合｜第1天 / 傍晚｜旧商业街·生锈铁门前\n\n【剧情】\n雨宫朔的声音在空荡的街道上回荡，带着压抑已久的愤懑与冷冽的嘲弄，“堂堂御三家，只会把这种垃圾封印在门后当看门狗吗？禅院家的教养，看来也就只配和这种腐烂的残渣混在一起。”\n\n然而，那团阴影并未因为这番言语产生丝毫的动摇。那些由咒力碎片构成的恶意，就像是早已失去了灵魂的机体，对于生者的挑衅完全无动于衷。它那原本缓慢的搅动在这一刻戛然而止，随即便以一种更为狂躁的速度向外扩张。\n\n那股属于禅院家的残秽仿佛被这声嘲讽彻底点燃，或者说，它根本不在乎尊严，只在乎如何将眼前的“坐标”彻底抹平。随着一阵令人牙酸的金属扭曲声，锈迹斑斑的铁门在咒力的挤压下开始变形，裂缝中透出的阴寒气息瞬间加重了数倍。\n\n朔感觉到手臂上的刺痛感如同针扎般剧烈，那道被种下的咒力标记正在疯狂吞噬着周围的灵力，试图将他与这片空间的残秽彻底同化。原本平稳的咒力循环被打乱，空气中的雨意虽然在凝聚，但却变得异常沉重，仿佛随时都会崩塌。\n\n对方根本没有“交流”的逻辑，那只是一个为了抹除目击者而存在的自动杀戮程序。嘲讽不仅没能激怒它，反而让这具冰冷的“造物”锁定了朔更深层的气息，四周的空气仿佛凝固成了实体，将他死死压在原地。\n\n【当前压力】\n嘲讽无效化，咒力标记已深入经脉，铁门即将彻底崩毁，你正处于被包围的前夕，必须在下一秒做出决断。\n\n【选择】\nA. 寻找掩体：放弃直接对抗，利用敏锐的感知寻找周围废弃商铺的结构死角进行躲避。\nB. 强行撤离：不再顾忌咒力消耗，以术式强行震开标记，向人流密集的区域撤退。\nC. 展开领域：顺势展开“雨债斩”，在对方破门而出的瞬间将其纳入战斗范围，先发制人。\nD. 自由行动：输入你的做法。",
+          "timestamp": "2026-06-05T07:43:06.862Z"
+        }
+      ],
+      "sessionSummary": "",
+      "turnCount": 3
+    }
+  }
+}
